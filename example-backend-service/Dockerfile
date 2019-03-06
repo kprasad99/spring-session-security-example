@@ -13,7 +13,7 @@ COPY ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","io.github.kprasad99.security.ExampleBackendServiceApplication"]
 
 
-#COPY ./target/ui/ /static
+COPY ./target/ui/ /static
 
 # alterntively instead of above
 # ARG JAR_FILE

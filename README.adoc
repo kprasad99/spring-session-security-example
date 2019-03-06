@@ -1,0 +1,28 @@
+= Spring Session with Security for REST
+
+An example project to demo spring session with redis and spring-security with mysql for REST Endpoints
+
+==== How to run.
+
+* Build frontend application. Go to example-frontend directory and execute below command
++
+[source, sh]
+----
+$ ng build --prod
+----
+* Build backend application. Execute below command from root directory of the application.
++
+[source, sh]
+----
+$ mvn clean package -DskipTests
+----
+
+* Bring up docker instances
++
+[source, sh]
+----
+$ docker-compose up
+----
+* Can access the application at url `http://localhost:8185' username and password is admin/password
+
+ 

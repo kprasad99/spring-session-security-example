@@ -7,24 +7,32 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: my-pass
+      MYSQL_DATABASE: mydb
+#    ports:
+#      - 3306:3306
     networks:
       - k-network
   k-redis:
     image: redis:5-alpine
+#    ports:
+#      - 6379:6379
     networks:
       - k-network
   example-backend:
     image: example-backend
     build: ./example-backend-service
     restart: on-failure
+    ports:
+      - 8185:8080
     networks:
       - k-network
     depends_on:
-      - k-db
-      - k-redis
+      - "k-db"
+      - "k-redis"
     environment:
-      - spring.datasource.url=jdbc:mysql://k-db:3306/
+      - spring.datasource.url=jdbc:mysql://k-db:3306/mydb?useSSL=false
       - spring.datasource.username=root
       - spring.datasource.password=my-pass
+      - spring.redis.host=k-redis
 networks:
   k-network:
