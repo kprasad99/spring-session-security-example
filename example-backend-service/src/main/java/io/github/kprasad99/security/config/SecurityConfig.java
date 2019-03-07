@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// @formatter:off
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/app").permitAll().anyRequest().authenticated().and().requestCache()
+		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/auth", "/api").authenticated().and().requestCache()
 				.requestCache(new NullRequestCache()).and().httpBasic().realmName("Realm")
 				.authenticationEntryPoint(authenticationEntryPoint).and().csrf().disable();
 	}
